@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💾</text></svg>">
+
+    <title>Web Storage example</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form>
+                    <div class="mb-3">
+                        <label for="valorInput">Insert here a value to store in LocalStorage</label>
+                        <input type="text" class="form-control" id="valorInput">
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn btn-group">
+                <button id="btnguardar" type="button" class="btn btn-outline-success">💾 Save to Local Storage</button>
+                <button id="btnCargar" type="button" class="btn btn-outline-primary">📇Load into HTML</button>
+                <button id="btnEliminar" type="button" class="btn btn-outline-danger">🗑 Delete from LocalStorage &
+                    HTML</button>
+
+            </div>
+            <h2><span id="valorDESDELocalStorage" class="badge bg-success"></span></h2>
+
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"> </script>
+
+    <script>
+        btnguardar.addEventListener('click', () => {
+            let val = document.getElementById('valorInput').value;
+            localStorage.setItem("LocalStorageKeyValue", val);
+            document.getElementById("valorInput").value = "";
+        });
+
+        btnCargar.addEventListener('click', () => {
+            let val = localStorage.getItem("LocalStorageKeyValue");
+            document.getElementById("valorDESDELocalStorage").innerHTML = val;
+        })
+
+        btnEliminar.addEventListener('click', () => {
+            document.getElementById("valorDESDELocalStorage").innerHTML = "";
+            localStorage.removeItem("LocalStorageKeyValue");
+
+        })
+
+    </script>
+</body>
+
+</html>
